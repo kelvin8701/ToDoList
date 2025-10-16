@@ -1,0 +1,78 @@
+:root{
+  /* semantic tokens */
+  --prio-high:#ef4444; --prio-med:#f59e0b; --prio-low:#10b981;
+
+  /* light base */
+  --bg:#fff; --fg:#0f172a; --muted:#6b7280;
+  --card-bg:#fff; --card-border:rgba(0,0,0,.08);
+
+  /* status (light) */
+  --todo-bg:#fff;     --todo-border:#e5e7eb;  --todo-accent:#94a3b8;
+  --doing-bg:#fff7df; --doing-border:#f8e6a8; --doing-accent:#f59e0b;
+  --done-bg:#e8f7ef;  --done-border:#bfead1;  --done-accent:#34d399;
+}
+
+/* dark overrides */
+html[data-theme="dark"]{
+  --bg:#0b1020; --fg:#e5e7eb; --muted:#a3a3a3;
+  --card-bg:#0f162c; --card-border:#1f2937;
+
+  --todo-bg:#0f162c;  --todo-border:#293247;  --todo-accent:#94a3b8;
+  --doing-bg:#291f0c; --doing-border:#5a4a20; --doing-accent:#f59e0b;
+  --done-bg:#112a1f;  --done-border:#285240;  --done-accent:#34d399;
+}
+
+/* ===== base ===== */
+body{background:var(--bg);color:var(--fg)}
+.card{background:var(--card-bg);border-color:var(--card-border)}
+
+/* headings + labels lebih kontras */
+.card .card-body>h2,.card .h6,.form-label{color:var(--fg)}
+
+/* form controls + focus */
+.form-control,.form-select{
+  background:var(--bg);color:var(--fg);border-color:var(--card-border)
+}
+html[data-theme="dark"] .form-control,
+html[data-theme="dark"] .form-select{
+  background:#0e1630;border-color:#2a3650;color:#e8ecf5
+}
+.form-control::placeholder{color:var(--muted)}
+.form-control:focus,.form-select:focus{
+  border-color:#4f46e5;box-shadow:0 0 0 .2rem rgba(79,70,229,.25)
+}
+
+/* ===== task item ===== */
+.task-item{
+  background:var(--card-bg);
+  border:1px solid var(--card-border);
+  border-radius:12px;
+  padding:12px;
+  border-left:6px solid transparent;
+  transition: background 1s, border-color 1s;
+}
+.status-todo {background:var(--todo-bg);  border-color:var(--todo-border);  border-left-color:var(--todo-accent)}
+.status-doing{background:var(--doing-bg); border-color:var(--doing-border); border-left-color:var(--doing-accent)}
+.status-done {background:var(--done-bg);  border-color:var(--done-border);  border-left-color:var(--done-accent)}
+
+.task-head{display:flex;gap:.75rem;align-items:center;justify-content:space-between}
+.task-title{min-width: 200px;
+    font-weight:600;word-break:break-word;color:var(--fg)}
+.task-title.done{text-decoration:line-through;opacity:.8}
+
+/* meta row */
+.task-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;font-size:.9rem;color:var(--muted)}
+.badge-outline{border:1px solid #cbd5e1;border-radius:999px;padding:.15rem .6rem;background:rgba(148,163,184,.08)}
+html[data-theme="dark"] .badge-outline{border-color:#46557a;background:rgba(99,102,241,.08);color:#cfd8ee}
+.badge-high{border-color:var(--prio-high);color:var(--prio-high)}
+.badge-med {border-color:var(--prio-med); color:var(--prio-med)}
+.badge-low {border-color:var(--prio-low); color:var(--prio-low)}
+.task-meta .form-select.form-select-sm{min-width:9rem; 
+ background: var(--card-bg) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--card-border) !important;}
+
+/* mobile: tombol aksi turun rapi */
+@media (max-width:991.98px){
+  .task-actions{width:100%;display:flex;gap:.5rem;justify-content:flex-end}
+}
